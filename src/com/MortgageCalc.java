@@ -10,7 +10,8 @@ import javax.swing.JLabel;
 
 public class MortgageCalc implements ActionListener {
 
-       private int count = 0;
+
+       private float cost = 0; //cost will need the formula
        private JLabel label;
        private JFrame frame;
        private JPanel panel;
@@ -22,7 +23,7 @@ public class MortgageCalc implements ActionListener {
             button.addActionListener(this);
 
 
-            label = new JLabel("Number of clicks: 0");
+            label = new JLabel("Monthly Cost");
 
 
             panel = new JPanel();
@@ -37,6 +38,8 @@ public class MortgageCalc implements ActionListener {
             frame.pack();
             frame.setVisible(true);
 
+            int loan = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter loan amount:"));
+
 
         }
 
@@ -47,7 +50,7 @@ public class MortgageCalc implements ActionListener {
         @Override
         public void actionPerformed (ActionEvent e){
             count++;
-            label.setText("Number of clicks " + count);
+            label.setText("Monthly Cost" + count);
 
         }
     }
