@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class MortgageCalc implements ActionListener {
 
 
-       private float cost = 0; //cost will need the formula
+       private double cost = 0; //cost will need the formula
        private JLabel label;
        private JFrame frame;
        private JPanel panel;
@@ -19,7 +19,7 @@ public class MortgageCalc implements ActionListener {
     public MortgageCalc() {
             frame = new JFrame();
 
-            JButton button = new JButton("Click me");
+            JButton button = new JButton("Click to start");
             button.addActionListener(this);
 
 
@@ -38,7 +38,7 @@ public class MortgageCalc implements ActionListener {
             frame.pack();
             frame.setVisible(true);
 
-            int loan = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter loan amount:"));
+
 
 
         }
@@ -49,8 +49,18 @@ public class MortgageCalc implements ActionListener {
 
         @Override
         public void actionPerformed (ActionEvent e){
-            count++;
-            label.setText("Monthly Cost" + count);
+
+            int loan = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter loan amount:"));
+            int years = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter number of years:"));
+            int months = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter number of months:"));
+            double rate = Double.parseDouble(JOptionPane.showInputDialog(null,"Enter interest rate:"));
+            rate = (rate/100)/12;
+            double time = (years*12) + months;
+            double p;
+            p = (loan * rate) / (1 - Math.pow(1 + rate, -time));
+            p = Math.round(p * 100.0) / 100.0;
+
+            label.setText("Monthly Cost £" + p);
 
         }
     }
